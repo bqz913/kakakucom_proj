@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TOP</title>
+    <link href="../static/sheet.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>PC価格推定おじさん</h1>
+<image src="../static/images/hakase_laugh.png" style="width:400px"></image>
+<div class="balloon_parent">
+<svg class="balloon_child" xmlns='http://www.w3.org/2000/svg' height='120' width='400' viewBox='0 0 200 60' style='fill:#ffffff;stroke:#999999;vertical-align:top' ><!-- 背景色と枠線を指定 -->
+<path d='M15,6 A6 6 0 0 1 21,1 L170,1 A6,6 0 0 1 175,6 L175,42 A6,6 0 0 1 170,48 L21,48 A6,6 0 0 1 15,42 L15,40 L1,45 L15,25  Z'></path><!-- pathで角丸の吹き出しを描く -->
+</svg>
+<span id='result' class="balloon_child" style="left:45px; top:10px">CPUスコアを入力するのじゃ！</span><!-- textで中央基点に文字の開始位置を指定 -->
+</div>
+<table>
+<tr>
+    <td>CPUスコア</td><td><input type="text" name="cpu"></td>
+</tr>
+<tr>
+    <td>GPUスコア</td><td><input type="text" name="gpu"></td>
+</tr>
+<tr>
+    <td>メモリ(GB)</td><td><input type="text" name="memory"></td>
+</tr>
+<tr>
+    <td>
+        <select name="disk">
+            <option value="ssd">SSD</option>
+            <option value="hdd">HDD</option>
+        </select>
+    </td>
+    <td>
+        <input type="text" name="disk_capacity">
+    </td>
+</tr>
+</table>
+<a href="#" id='submit'>送信</a>
+
+
+
+<script>
+    $(function(){
+        $('a#submit').bind('click', function(){
+            $.getJSON('/_add_numbers', {
+                cpu: $('input[name="cpu"]').val(),
+                gpu: $('input[name="gpu"]').val(),
+                memory: $('input[name="memory"]').val(),
+                disk: $('input[name="disk"]').val(),
+                disk_capacity: $('input[name="disk_capacity"]').val()
+            }, function(data){
+                $("#result").text(data.result)
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

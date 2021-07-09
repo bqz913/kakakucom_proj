@@ -1,0 +1,12 @@
+.bubble-home.bubble-right {
+
+}
+
+.balloon_parent {
+    position: absolute;
+    display: inline-block;
+}
+
+.balloon_child {
+position: absolute;
+}
